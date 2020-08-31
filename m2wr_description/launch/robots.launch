@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<!-- BEGIN ROBOT 1-->
+  <group ns="robot1">
+  <param name="robot_description_1"
+    command="$(find xacro)/xacro '$(find m2wr_description)/urdf/follow.xacro'" />
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find m2wr_description)/launch/two.launch" >
+      <arg name="init_pose" value="-x 1 -y 1 -z 0" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="robot2">
+  <param name="robot_description_2"
+    command="$(find xacro)/xacro '$(find m2wr_description)/urdf/m2wr.xacro'" />
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find m2wr_description)/launch/two.launch" >
+      <arg name="init_pose" value="-x -1 -y 1 -z 0" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+  </group>
+</launch>
